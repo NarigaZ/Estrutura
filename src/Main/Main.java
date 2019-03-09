@@ -9,23 +9,45 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        MargeSort t = new MargeSort();
         ArrayList<String> dicio = new ArrayList<>();
         System.out.printf("Informe o nome de arquivo texto:\n");
-        String nome = in.nextLine();
+        String nome = "C:\\Users\\Naty\\Desktop\\t.txt";
         System.out.printf("\nConteúdo do arquivo texto:\n");
         try {
             FileReader arq = new FileReader(nome);
             BufferedReader lerArq = new BufferedReader(arq);
 
-            String linha = lerArq.readLine(); // lê a primeira linha
-            while (linha != null) { // a variável "linha" recebe o valor "null" quando o processo
-                dicio.add(linha); // de repetição atingir o final do arquivo texto
-                linha = lerArq.readLine(); // lê da segunda até a última linha
+            int tamanho = Integer.parseInt(lerArq.readLine()); // lê a primeira linha
+            String vetor[] = new String[tamanho];
+            int i =0;
+            String linha = "";
+
+            linha = lerArq.readLine();
+            vetor[0]= linha;
+            while (linha!=null) { // a variável "linha" recebe o valor "null" quando o processo
+                linha = lerArq.readLine();
+                i++;
+                if(i<tamanho){
+                    vetor[i] = linha; // de repetição atingir o final do arquivo texto
+                }
+                // linha = lerArq.readLine(); // lê da segunda até a última linha
+
             }
             arq.close();
-            for (String d : dicio ) {
-                System.out.println(d);
+            for (int j=0 ; j<tamanho ; j++) {
+                System.out.println(vetor[j]);
             }
+
+            vetor = t.BubleSort(vetor,tamanho);
+            System.out.println();
+            System.out.println("Ordenado");
+            System.out.println();
+
+            for (int j=0 ; j<tamanho ; j++) {
+                System.out.println(vetor[j]);
+            }
+
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
