@@ -12,7 +12,7 @@ public class Main {
         MargeSort t = new MargeSort();
         ArrayList<String> dicio = new ArrayList<>();
         System.out.printf("Informe o nome de arquivo texto:\n");
-        String nome = "C:\\Users\\Naty\\Desktop\\t.txt";
+        String nome = "C:\\Users\\Naty\\Desktop\\Portuguese (Brazilian).txt";
         System.out.printf("\nConteúdo do arquivo texto:\n");
         try {
             FileReader arq = new FileReader(nome);
@@ -45,7 +45,7 @@ public class Main {
             System.out.println();
 
             for (int j=0 ; j<tamanho ; j++) {
-                System.out.println(vetor[j]);
+                System.out.println(vetor[j] + "["+vetor[j].length()+"]");
             }
 
         } catch (IOException e) {
