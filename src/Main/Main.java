@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Ordenacao t = new Ordenacao();
+        Busca b = new Busca();
         ArrayList<String> dicio = new ArrayList<>();
         //System.out.printf("Informe o nome de arquivo texto:\n");
         String nome = "C:\\Users\\NarigaZ\\Desktop\\teste.txt";
@@ -43,6 +44,54 @@ public class Main {
                         vetor = t.BubleSort(vetor, tamanho);
                 }
             } while (op != 0);
+            int op2 = 1;
+
+            do {
+                System.out.println("Escolha o metodo de Busca");
+                System.out.println("1 - Sequencial");
+                System.out.println("2 - Binaria");
+                System.out.println("0 - Sair");
+                op2 = in.nextInt();
+                String palavra;
+                int pos;
+                long tempo1, tempo2;
+                switch (op2) {
+                    case 1:
+                        System.out.print("Qual palavra deseja buscar: ");
+                        palavra = in.next();
+                        pos = b.Sequencial(vetor, palavra);
+                        tempo1 = System.currentTimeMillis();
+                        if (pos == -1) {
+                            System.out.println("Nao contem palavra");
+                            tempo2 = System.currentTimeMillis();
+                            System.out.printf("Tempo de Busca em millisegundos : %d.\n",(tempo2 - tempo1));
+                            break;
+                        } else {
+                            System.out.printf("Palavra na posicao [%d]", pos + 1);
+                            System.out.println();
+                            tempo2 = System.currentTimeMillis();
+                            System.out.printf("Tempo de Busca em millisegundos : %d.\n",(tempo2 - tempo1));
+                            break;
+                        }
+                    case 2:
+                        System.out.print("Qual palavra deseja buscar: ");
+                        palavra = in.next();
+                        tempo1 = System.currentTimeMillis();
+                        pos = b.Sequencial(vetor, palavra);
+                        if (pos == -1) {
+                            System.out.println("Nao contem palavra");
+                            tempo2 = System.currentTimeMillis();
+                            System.out.printf("Tempo de Busca em millisegundos : %d.\n",(tempo2 - tempo1));
+                            break;
+                        } else {
+                            System.out.printf("Palavra na posicao [%d]", pos + 1);
+                            System.out.println();
+                            tempo2 = System.currentTimeMillis();
+                            System.out.printf("Tempo de Busca em millisegundos : %d.\n",(tempo2 - tempo1));
+                            break;
+                        }
+                }
+            } while (op2 != 0);
 
             FileWriter arqs = new FileWriter("C:\\Users\\NarigaZ\\Desktop\\saida.txt");
             PrintWriter gravarArq = new PrintWriter(arqs);
@@ -56,7 +105,6 @@ public class Main {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
-
         System.out.println();
     }
 }
