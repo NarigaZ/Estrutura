@@ -1,6 +1,6 @@
 package Main;
 
-public class MargeSort {
+public class Ordenacao {
 
     public String[] BubleSort (String vetor[] , int tamanho){
         for(int i = 0; i<tamanho; i++){
