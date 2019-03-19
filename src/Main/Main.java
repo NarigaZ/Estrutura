@@ -20,6 +20,7 @@ public class Main {
 
             int tamanho = Integer.parseInt(lerArq.readLine()); // lê a primeira linha
             String vetor[] = new String[tamanho];
+            String vetorOrdenado[] = new String[tamanho];
             int i = 0;
             String linha = "";
             linha = lerArq.readLine();
@@ -37,11 +38,24 @@ public class Main {
             do {
                 System.out.println("Escolha o metodo de Ordenacao");
                 System.out.println("1 - BubleSort");
+                System.out.println("2 - SelectionSort");
+                System.out.println("3 - QuickSort");
+                System.out.println("4 - SelectionSort");
                 System.out.println("0 - Sair");
                 op = in.nextInt();
                 switch (op) {
                     case 1:
-                        vetor = t.BubleSort(vetor, tamanho);
+                        vetorOrdenado = t.BubleSort(vetor, tamanho);
+                        break;
+                    case 2:
+                        vetorOrdenado = t.InsertionSort(vetor,tamanho);
+                        break;
+                    case 3:
+                        vetorOrdenado = t.quickSort(vetor,0,vetor.length-1);
+                        break;
+                    case 4:
+                        vetorOrdenado = t.selectionSort(vetor);
+                        break;
                 }
             } while (op != 0);
             int op2 = 1;
@@ -59,7 +73,7 @@ public class Main {
                     case 1:
                         System.out.print("Qual palavra deseja buscar: ");
                         palavra = in.next();
-                        pos = b.Sequencial(vetor, palavra);
+                        pos = b.Sequencial(vetorOrdenado, palavra);
                         tempo1 = System.currentTimeMillis();
                         if (pos == -1) {
                             System.out.println("Nao contem palavra");
@@ -77,7 +91,7 @@ public class Main {
                         System.out.print("Qual palavra deseja buscar: ");
                         palavra = in.next();
                         tempo1 = System.currentTimeMillis();
-                        pos = b.Sequencial(vetor, palavra);
+                        pos = b.Sequencial(vetorOrdenado, palavra);
                         if (pos == -1) {
                             System.out.println("Nao contem palavra");
                             tempo2 = System.currentTimeMillis();
@@ -97,7 +111,7 @@ public class Main {
             PrintWriter gravarArq = new PrintWriter(arqs);
 
             for (int j = 0; j < tamanho; j++) {
-                gravarArq.println(vetor[j] + "[" + vetor[j].length() + "]");
+                gravarArq.println(vetorOrdenado[j] + "[" + vetorOrdenado[j].length() + "]");
             }
             arqs.close();
             System.out.println("Arquivo Gravado com Sucesso!");
